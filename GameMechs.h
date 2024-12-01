@@ -16,12 +16,15 @@ class GameMechs
         bool exitFlag;
         bool loseFlag;
         int score;
+       
 
         int boardSizeX;
         int boardSizeY;
 
         objPos food;
-
+        objPos foodPos; 
+        
+        
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
@@ -41,6 +44,9 @@ class GameMechs
         
         int getScore() const;
         void incrementScore();
+        void generateFood(objPos blockOff);
+        objPos getFoodPos() const; 
+       
         
         // More methods should be added here
 };
