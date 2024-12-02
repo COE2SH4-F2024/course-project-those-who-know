@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "GameMechs.h"
 Player::Player(GameMechs* thisGMRef)
 {
     mainGameMechsRef = thisGMRef;
@@ -10,7 +10,6 @@ Player::Player(GameMechs* thisGMRef)
     playerPosArrayList = new objPosArrayList();
     playerPosArrayList->insertHead(objPos(mainGameMechsRef->getBoardSizeX() / 2, mainGameMechsRef->getBoardSizeY() / 2, '*'));
 }
-
 
 Player::~Player()
 {
@@ -67,7 +66,6 @@ void Player::movePlayer()
 {
         // PPA3 Finite State Machine logic
     objPos newHead = (playerPosArrayList->getHeadElement());
-    int eaten_food = 0;
     if (direction == U || direction == D) {
         // Moving vertically
         int newY;
@@ -110,17 +108,12 @@ void Player::movePlayer()
                     mainGameMechsRef->setLoseFlag();
                 }
             }
-        //for (int i = 0; i < 5; i++)
-        //{
-         //   if (mainGameMechsRef->getFoodPos()->getElement(i).pos->x == newHead.pos->x && mainGameMechsRef->getFoodPos()->getElement(i).pos->y == newHead.pos->y) // if food eaten, check if special food
-         //   {
-         //       eaten_food = 1;
-         //       mainGameMechsRef->incrementScore();
-           // }
-        
-        //if (!eaten_food)
-        //playerPosArrayList->removeTail(); // keeps snake body length constant if no food
-        //}
+            if (mainGameMechsRef->getFoodPos().pos->x == newHead.pos->x && mainGameMechsRef->getFoodPos().pos->y == newHead.pos->y) // if food eaten, check if special food
+            { 
+                mainGameMechsRef->incrementScore();
+            } else {
+                playerPosArrayList->removeTail(); // keeps snake body length constant if no food
+            }
     }
 }
 
