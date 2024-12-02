@@ -73,10 +73,11 @@ void DrawScreen(void)
     int y = 0;
 
     bool exit = false;
-
-    for (x = 0; x < (game->getBoardSizeX()); x++)
+for (y = 0; y < (game->getBoardSizeY()); y++)
     {
-        for (y = 0; y < (game->getBoardSizeY()); y++)
+        
+        
+    for (x = 0; x < (game->getBoardSizeX()); x++)
         {
             if (x == (game->getBoardSizeX()) - 1 || y == (game->getBoardSizeY()) - 1 || x == 0 || y == 0)
             {
