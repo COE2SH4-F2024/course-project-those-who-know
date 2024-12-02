@@ -4,13 +4,10 @@
 #include "Player.h"
 #include "GameMechs.h"
 
-
 using namespace std;
 
-
 Player *player_one;
-GameMechs *game; 
-
+GameMechs *game;
 
 #define DELAY_CONST 100000
 
@@ -23,14 +20,12 @@ void DrawScreen(void);
 void LoopDelay(void);
 void CleanUp(void);
 
-
-
 int main(void)
 {
 
     Initialize();
 
-    while(exitFlag == false)  
+    while (exitFlag == false)
     {
         GetInput();
         RunLogic();
@@ -39,12 +34,7 @@ int main(void)
     }
 
     CleanUp();
-
-   
-
-
 }
-
 
 void Initialize(void)
 {
@@ -55,55 +45,59 @@ void Initialize(void)
 
     game = new GameMechs();
 
-    player_one=new Player(game);
-
-
-
+    player_one = new Player(game);
 }
 
 void GetInput(void)
 {
-    if(MacUILib_hasChar()==true)
+    if (MacUILib_hasChar() == true)
     {
         game->setInput(MacUILib_getChar());
     }
-    
-   
 }
 
 void RunLogic(void)
 {
     /*
-    player_one=movePlayer(); 
+    player_one=movePlayer();
     player_one=updatePlayerDir();
     */
-    
 }
 
 void DrawScreen(void)
 {
-    MacUILib_clearScreen();   
+    MacUILib_clearScreen();
 
+    int x = 0;
+    int y = 0;
 
-    int x=0; 
-    int y=0; 
-    
-    bool exit=false; 
+    bool exit = false;
 
-
-
-
-    for (x=0; x<(game->getBoardSizeX()); x++)
+    for (x = 0; x < (game->getBoardSizeX()); x++)
     {
-        for (y=0; y<(game->getBoardSizeY()); y++)
+        for (y = 0; y < (game->getBoardSizeY()); y++)
         {
-            if (x==(game->getBoardSizeX())-1||y==(game->getBoardSizeY())-1||x==0||y==0)
+            if (x == (game->getBoardSizeX()) - 1 || y == (game->getBoardSizeY()) - 1 || x == 0 || y == 0)
             {
                 MacUILib_printf("#");
                 continue;
             }
+            else
+            {
+                for (int i = 0; i < player_one->getPlayerPos()->getSize(); i++)
+                {
 
-            
+                    int xCheck = player_one->getPlayerPos()->getElement(i).pos->x;
+                    int yCheck = player_one->getPlayerPos()->getElement(i).pos->y;
+
+                    if (x == xCheck && y == yCheck)
+                    {
+                        MacUILib_printf("%c", player_one->getPlayerPos()->getElement(i).getSymbol());
+
+                        break;
+                    }
+                }
+            }
         }
     }
 }
@@ -113,10 +107,9 @@ void LoopDelay(void)
     MacUILib_Delay(DELAY_CONST); // 0.1s delay
 }
 
-
 void CleanUp(void)
 {
-    MacUILib_clearScreen();    
+    MacUILib_clearScreen();
 
     MacUILib_uninit();
 }
