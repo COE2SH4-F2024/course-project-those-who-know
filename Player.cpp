@@ -110,8 +110,17 @@ void Player::movePlayer()
                     mainGameMechsRef->setLoseFlag();
                 }
             }
-        if (!eaten_food)
-        playerPosArrayList->removeTail(); // keeps snake body length constant if no food
+        //for (int i = 0; i < 5; i++)
+        //{
+         //   if (mainGameMechsRef->getFoodPos()->getElement(i).pos->x == newHead.pos->x && mainGameMechsRef->getFoodPos()->getElement(i).pos->y == newHead.pos->y) // if food eaten, check if special food
+         //   {
+         //       eaten_food = 1;
+         //       mainGameMechsRef->incrementScore();
+           // }
+        
+        //if (!eaten_food)
+        //playerPosArrayList->removeTail(); // keeps snake body length constant if no food
+        //}
     }
 }
 
