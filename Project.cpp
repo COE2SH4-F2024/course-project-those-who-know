@@ -22,6 +22,7 @@ void CleanUp(void);
 
 int main(void)
 {
+    
 
     Initialize();
 
@@ -46,6 +47,7 @@ void Initialize(void)
     game = new GameMechs();
 
     player_one = new Player(game);
+    game->generateFood(player_one->getPlayerPos());
 }
 
 void GetInput(void)
@@ -58,10 +60,9 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    /*
-    player_one=movePlayer();
-    player_one=updatePlayerDir();
-    */
+
+    player_one->movePlayer();
+    player_one->updatePlayerDir();
 }
 
 void DrawScreen(void)
@@ -80,7 +81,6 @@ void DrawScreen(void)
             if (x == (game->getBoardSizeX()) - 1 || y == (game->getBoardSizeY()) - 1 || x == 0 || y == 0)
             {
                 MacUILib_printf("#");
-                continue;
             }
             else
             {
@@ -93,12 +93,24 @@ void DrawScreen(void)
                     if (x == xCheck && y == yCheck)
                     {
                         MacUILib_printf("%c", player_one->getPlayerPos()->getElement(i).getSymbol());
-
                         break;
                     }
+
+                    int xCheckFood = game->getFoodPos().pos->x;
+                    int yCheckFood = game->getFoodPos().pos->y;
+
+                    if (x == xCheckFood && y == yCheckFood)
+                    {
+                        MacUILib_printf("%c", player_one->getPlayerPos()->getElement(i).getSymbol());
+                        break;
+                    }
+
+                    MacUILib_printf(" ");
                 }
             }
+            
         }
+        MacUILib_printf("\n");
     }
 }
 
