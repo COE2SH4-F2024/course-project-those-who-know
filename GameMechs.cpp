@@ -11,8 +11,6 @@ GameMechs::GameMechs()
     boardSizeX=35; 
     boardSizeY=15; 
 
-   
-
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
