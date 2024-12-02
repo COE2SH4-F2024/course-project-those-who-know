@@ -25,7 +25,7 @@ void Player::updatePlayerDir()
 {
     // PPA3 input processing logic  
     char inp = mainGameMechsRef->getInput();
-    if (!inp) // if not null character
+    if (inp) // if not null character
     {
         switch (inp)
         {
@@ -59,6 +59,7 @@ void Player::updatePlayerDir()
         default:
             break;
         }
+        mainGameMechsRef->clearInput();
     }        
 }
 
@@ -111,6 +112,7 @@ void Player::movePlayer()
             if (mainGameMechsRef->getFoodPos().pos->x == newHead.pos->x && mainGameMechsRef->getFoodPos().pos->y == newHead.pos->y) // if food eaten, check if special food
             { 
                 mainGameMechsRef->incrementScore();
+                mainGameMechsRef->generateFood(this->getPlayerPos());
             } else {
                 playerPosArrayList->removeTail(); // keeps snake body length constant if no food
             }

@@ -13,6 +13,7 @@ GameMechs::GameMechs()
     boardSizeY = 15;
 
     foodPos = objPos();
+    srand(time(NULL));
 }
 
 GameMechs::GameMechs(int boardX, int boardY)
@@ -97,15 +98,17 @@ void GameMechs::generateFood(objPosArrayList *blockOff)
     bool blocked = true;
     while (blocked)
     {
-        int x = rand() % (boardSizeX - 2) + 1;
-        int y = rand() % (boardSizeY - 2) + 1;
+        blocked = false;
+        x = rand() % (boardSizeX - 2) + 1;
+        y = rand() % (boardSizeY - 2) + 1;
         for (int i = 0; i < blockOff->getSize(); i++)
         {
             if (blockOff->getElement(i).pos->x == x && blockOff->getElement(i).pos->y == y) 
             {
-                blocked = false;
+                blocked = true;
                 break;
             }
+            
         }
     }
     foodPos = objPos(x, y, 'O');
