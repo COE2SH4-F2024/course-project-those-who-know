@@ -18,6 +18,7 @@ GameMechs::GameMechs()
 
 GameMechs::GameMechs(int boardX, int boardY)
 {
+ 
     exitFlag = false;
     loseFlag = false;
     input = 0;

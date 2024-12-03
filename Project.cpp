@@ -73,7 +73,7 @@ void DrawScreen(void)
     int y = 0; 
 
     bool exit = false;
-    MacUILib_printf("Snake Game: . to exit\n");
+    MacUILib_printf("Snake Game (period to exit)\n");
     for (y = 0; y < (game->getBoardSizeY()); y++)
     {
 

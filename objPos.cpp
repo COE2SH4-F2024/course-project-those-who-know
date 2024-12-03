@@ -43,7 +43,8 @@ objPos &objPos::operator=(const objPos &p) // assignment operator
 }
 
 void objPos::setObjPos(objPos o)
-{
+{  
+    //sets x/y coords
     pos->x = o.pos->x;
     pos->y = o.pos->y;
     symbol = o.symbol;
@@ -58,7 +59,7 @@ void objPos::setObjPos(int xPos, int yPos, char sym)
 
 objPos objPos::getObjPos() const
 {
-    objPos returnPos;
+    objPos returnPos; //gets x and y coords 
     returnPos.pos->x = pos->x;
     returnPos.pos->y = pos->y;
     returnPos.symbol = symbol;
