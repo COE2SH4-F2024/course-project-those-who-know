@@ -32,8 +32,12 @@ GameMechs::GameMechs(int boardX, int boardY)
 // do you need a destructor?
 GameMechs::~GameMechs()
 {
+    //no destructor needed, as no memory allocs. made 
 }
 
+/*
+    methods below self-explanitory 
+*/
 bool GameMechs::getExitFlagStatus() const
 {
     return exitFlag;
@@ -95,15 +99,15 @@ void GameMechs::generateFood(objPosArrayList *blockOff)
 {
     int x = 0;
     int y = 0;
-    bool blocked = true;
+    bool blocked = true; //see if position is already blocked 
     while (blocked)
     {
         blocked = false;
         x = rand() % (boardSizeX - 2) + 1;
         y = rand() % (boardSizeY - 2) + 1;
-        for (int i = 0; i < blockOff->getSize(); i++)
+        for (int i = 0; i < blockOff->getSize(); i++) //check to see if food placement is already blocked off 
         {
-            if (blockOff->getElement(i).pos->x == x && blockOff->getElement(i).pos->y == y) 
+            if (blockOff->getElement(i).pos->x == x && blockOff->getElement(i).pos->y == y)  //element is blocked, update the variable 
             {
                 blocked = true;
                 break;
@@ -111,7 +115,7 @@ void GameMechs::generateFood(objPosArrayList *blockOff)
             
         }
     }
-    foodPos = objPos(x, y, 'O');
+    foodPos = objPos(x, y, 'O'); //'O' character represents the food element 
 }
 
 objPos GameMechs::getFoodPos() const

@@ -44,11 +44,11 @@ class GameMechs
         
         int getScore() const;
         void incrementScore();
-        void generateFood(objPosArrayList *blockOff);
+        void generateFood(objPosArrayList *blockOff); //generateFood calls blockOff to ensure availability 
         objPos getFoodPos() const; 
        
         
-        // More methods should be added here
+     
 };
 
 #endif
